@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body style="background-image: url(images/bg.jpg); background-size: 100%">
+	<button class="btn bg-success button1">Cards</button>
+	
+
+	<div id="enemy" style="display:flex; margin-top: 100px">
+		<h1 style="color:red">Health <span class="health1">0</span></h1>
+		<h1 style="color:orange">Attack <span class="attack1">0</span></h1>
+	</div>
+	<button class="btn bg-success button2">Cards</button>
+	
+	<div id="player" style="display:flex; margin-top: 300px">
+		<h1 style="color:red">Health <span class="health2">0</span></h1>
+		<h1 style="color:orange">Attack <span class="attack2">0</span></h1>
+
+	</div>
+	<button class="btn bg-success button">Check</button>
+
+	<script type="text/javascript">
+		let cards = [['images/1.png',1,1],['images/2.png',2,4],['images/3.png',3,4],['images/4.png',4,1],['images/5.png',5,7],['images/6.png',6,5],['images/7.png',7,5],['images/8.png',8,7],['images/9.png',9,4],['images/10.png',4,4],['images/super.png',24,24]]
+		let random = function(){
+			return(Math.round(Math.random()*5))
+		}
+		let player_stats = [0,0]
+		let enemy_stats = [0,0]
+		let player_card = function(count){
+			for (let i = 0; i < count; i+=1){
+				let img = document.createElement("img")
+				player.appendChild(img)
+				let a = random()
+				img.src = cards[a][0]
+				player_stats[0] += cards[a][1]
+				player_stats[1] += cards[a][2]
+				img.style.height="230px"
+				img.style.width="180px"
+				document.querySelector('.health2').innerHTML = player_stats[0]
+				document.querySelector('.attack2').innerHTML = player_stats[1]
+
+			}
+
+		}
+		let enemy_card = function(count){
+			for (let i = 0; i < count; i+=1){
+				let img = document.createElement("img")
+				enemy.appendChild(img)
+				let a = random()
+				img.src = cards[a][0]
+				enemy_stats[0] += cards[a][1]
+				enemy_stats[1] += cards[a][2]
+				img.style.height="230px"
+				img.style.width="180px"
+				document.querySelector('.health1').innerHTML = enemy_stats[0]
+				document.querySelector('.attack1').innerHTML = enemy_stats[1]
+
+			}
+
+		}
+		document.querySelector('.button1').onclick = function(){
+			enemy_card(random())
+		}
+		document.querySelector('.button2').onclick = function(){
+			player_card(random())
+		}
+		document.querySelector('.button').onclick = function(){
+			if(enemy_stats[0] - player_stats[1] > player_stats[0] - enemy_stats[1]){
+				alert("Ты проиграл")
+			}
+			else{
+				alert("Ты победил")
+			}
+		}
+		
+
+
+
+			
+
+		
+			
+	</script>
+</body>
+
+	
+</html>
